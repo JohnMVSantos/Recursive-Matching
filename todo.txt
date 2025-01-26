@@ -16,3 +16,5 @@
 - ReadMe instructions
 - Make repo back to public once completed
 - Paper and analysis on the recursive algorithm. 
+- Provide implementation for minimum. 
+- Resolve NOSONAR
