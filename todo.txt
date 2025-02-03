@@ -16,5 +16,10 @@
 - ReadMe instructions
 - Make repo back to public once completed
 - Paper and analysis on the recursive algorithm. 
-- Provide implementation for minimum. 
 - Resolve NOSONAR
+- Rename repo to recursive matching
+
+- Optimize implementation of the hungarian algorithm
+- Return all possible assignments for the hungarian algorithm
+- Test hungarian implementations and compare with scipy results.
+- The hungarian implementation can be converted to class representation.

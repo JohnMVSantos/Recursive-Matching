@@ -1,6 +1,11 @@
 import numpy as np
 
-def match(matrix: np.ndarray, axis: int=1, limit: bool=True) -> np.ndarray: # NOSONAR
+def match( # NOSONAR
+        matrix: np.ndarray, 
+        axis: int=1, 
+        limit: bool=True, 
+        minimum: bool=False
+    ) -> np.ndarray: 
     """
     Recursive matching algorithm which iterates
     over the rows or columns depending on the axis
@@ -20,7 +25,10 @@ def match(matrix: np.ndarray, axis: int=1, limit: bool=True) -> np.ndarray: # NO
         of each row based on the maximum.
     limit : bool
         Do not match if the value of the match is the
-        minimum in the matrix.
+        minimum (default) / maximum (set minimum to True) in the matrix.
+    minimum : bool
+        Match based on the smaller value in the matrix. By default,
+        the matches are based on the highest value.
 
     Returns
     -------
@@ -36,7 +44,12 @@ def match(matrix: np.ndarray, axis: int=1, limit: bool=True) -> np.ndarray: # NO
         print(f"\t - [WARNING]: Axis can only between 0 or 1. Got {axis}")
         return
     
-    min_value = np.min(matrix) # Do not match if the maximum value is less than this value.
+    if minimum:
+        # The smallest values becomes the largest values.
+        matrix = -1 * (matrix - np.max(matrix))
+    
+    # Do not match if the maximum value is less than this value.
+    min_value = np.min(matrix) 
     # Assigning -1 indicates the column/row has not been matched.
     matches = np.ones(matrix.shape[axis], dtype=np.int32) * -1 
 
@@ -94,3 +107,15 @@ def match(matrix: np.ndarray, axis: int=1, limit: bool=True) -> np.ndarray: # NO
         )
         
     return matches
+
+if __name__ == '__main__':
+    matrix = np.array([
+        [0.,         0.,         0.,         0.,         0.        ],
+        [0.20689655, 0.07407407, 0.04761905, 0.,         0.23076923],
+        [0.,         0.,         0.38461538, 0.,         0.,        ],
+        [0.,         0.,         0.04347826, 0.5,        0.,        ],
+        [0.5,        0.,         0.,         0.,         1.,        ]
+    ], dtype=np.float32)
+    
+    matches = match(matrix=matrix)
+    print(f"{matches=}")
