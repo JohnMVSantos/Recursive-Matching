@@ -1,11 +1,15 @@
 
 
 1) Python
-    - Complete implementation
     - Setup sphinx docs
-    - Setup setup.py
     - Ensure proper licenses
+    - Setup setup.py
     - Upload to PyPi
+
+    - Optimize implementation of the hungarian algorithm
+    - Return all possible assignments for the hungarian algorithm
+    - Test hungarian implementations and compare with scipy results.
+    - The hungarian implementation can be converted to class representation.
 2) Rust
     - Complete implementation
     - Upload to cargo
@@ -17,9 +21,3 @@
 - Make repo back to public once completed
 - Paper and analysis on the recursive algorithm. 
 - Resolve NOSONAR
-- Rename repo to recursive matching
-
-- Optimize implementation of the hungarian algorithm
-- Return all possible assignments for the hungarian algorithm
-- Test hungarian implementations and compare with scipy results.
-- The hungarian implementation can be converted to class representation.
