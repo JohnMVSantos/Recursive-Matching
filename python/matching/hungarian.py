@@ -1,7 +1,7 @@
 import numpy as np
 
 
-def match(matrix: np.ndarray, axis: int=1, minimum: bool=True) -> np.ndarray: # NOSONAR
+def hungarian_match(matrix: np.ndarray, axis: int=1, minimum: bool=True) -> np.ndarray: # NOSONAR
     """
     Hungarian algorithm implementation for optimal assignments.
 
@@ -363,7 +363,7 @@ if __name__ == '__main__':
         [60,50,60,30],
         [20,80,50,70]
     ], dtype=np.float32)
-    matches = match(matrix=matrix)
+    matches = hungarian_match(matrix=matrix)
     print(f"{matches=}")
 
 
@@ -376,5 +376,5 @@ if __name__ == '__main__':
         [0.5,        0.,         0.,         0.,         1.,        ]
     ], dtype=np.float32)
 
-    matches = match(matrix=matrix, minimum=False)
+    matches = hungarian_match(matrix=matrix, minimum=False)
     print(f"{matches=}")

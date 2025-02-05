@@ -1,11 +1,9 @@
 
 
 1) Python
-    - Setup sphinx docs
-    - Ensure proper licenses
-    - Setup setup.py
+    - Modify to Apache license
     - Upload to PyPi
-
+    - Use version https://gist.github.com/pwithnall/7bc5f320b3bdf418265a
     - Optimize implementation of the hungarian algorithm
     - Return all possible assignments for the hungarian algorithm
     - Test hungarian implementations and compare with scipy results.

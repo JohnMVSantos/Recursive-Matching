@@ -1,6 +1,6 @@
 import numpy as np
 
-def match( # NOSONAR
+def recursive_match( # NOSONAR
         matrix: np.ndarray, 
         axis: int=1, 
         limit: bool=True, 
@@ -117,5 +117,5 @@ if __name__ == '__main__':
         [0.5,        0.,         0.,         0.,         1.,        ]
     ], dtype=np.float32)
     
-    matches = match(matrix=matrix)
+    matches = recursive_match(matrix=matrix)
     print(f"{matches=}")
