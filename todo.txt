@@ -1,13 +1,12 @@
 
 
 1) Python
-    - Modify to Apache license
     - Upload to PyPi
-    - Use version https://gist.github.com/pwithnall/7bc5f320b3bdf418265a
     - Optimize implementation of the hungarian algorithm
     - Return all possible assignments for the hungarian algorithm
     - Test hungarian implementations and compare with scipy results.
     - The hungarian implementation can be converted to class representation.
+    - Resolve NOSONAR
 2) Rust
     - Complete implementation
     - Upload to cargo
@@ -18,4 +17,3 @@
 - ReadMe instructions
 - Make repo back to public once completed
 - Paper and analysis on the recursive algorithm. 
-- Resolve NOSONAR
