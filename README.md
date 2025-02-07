@@ -70,7 +70,7 @@ This implementation can be found under `/python`. However, it can be
 installed via pip with the following command.
 
 ```shell
-pip install recursive-algorithm
+pip install recursive-matching
 ```
 
 To use the module, first import the algorithm.
