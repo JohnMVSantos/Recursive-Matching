@@ -5,10 +5,12 @@ or lowest values found by recursively matching and rematching pairs to
 assert the best matching pair. 
 
 This algorithm differs from the Hungarian Algorithm which seeks to formulate
-assignments based on the minimum (default) or maximum sum of the assignments. 
+assignments based on the minimum (default) or maximum sum of the assignments. The
+hungarian algorithm has the following properties which may not be ideal for certain
+applications.
 
 * The assignments formulated with the maximum sum does not always guarantee individual assignments with the highest possible outcome. 
-* Similarly, the assignments formulated with the minimum sum does not always guarantee individual assignments with the lowest possible outcome.
+* The assignments formulated with the minimum sum does not always guarantee individual assignments with the lowest possible outcome.
 
 # Application
 
@@ -60,6 +62,11 @@ the maximum sum overall where the individual matches may not be the maximum
 within a set of options.
 
 For more information, see `/python/demo.ipynb`
+
+# Changelog
+
+* Feb 06, 2025 [v1.0]: First release - python implementation.
+* Mar 02, 2025 [v1.1]: Rust implementation, doc fixes, python file name changes.
 
 # Modules
 The algorithm will be implemented in three languages: Python, Rust, C.

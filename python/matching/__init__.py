@@ -1,2 +1,2 @@
-from .hungarian import hungarian_match
-from .recursive import recursive_match
+from .hungarian_match import hungarian_match
+from .recursive_match import recursive_match

@@ -7,7 +7,7 @@ Submodules
 python.hungarian module
 -----------------------
 
-.. automodule:: python.matching.hungarian
+.. automodule:: python.matching.hungarian_match
    :members:
    :undoc-members:
    :show-inheritance:
@@ -15,15 +15,7 @@ python.hungarian module
 python.recursive module
 -----------------------
 
-.. automodule:: python.matching.recursive
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-python.setup module
--------------------
-
-.. automodule:: python.setup
+.. automodule:: python.matching.recursive_match
    :members:
    :undoc-members:
    :show-inheritance:
