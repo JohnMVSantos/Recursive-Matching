@@ -15,5 +15,5 @@
 
 - Paper and analysis on the recursive algorithm. 
 
-v1.3 - C implementation
-v2.0 - Python class implementation and cleanups
+v1.0.2 - C implementation
+v2.0.0 - Python class implementation and cleanups
