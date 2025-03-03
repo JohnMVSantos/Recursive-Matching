@@ -1,0 +1,43 @@
+# rustfmt.toml
+
+# Max width for line lengths
+max_width = 80
+
+# Use 4 spaces for indentation
+tab_spaces = 4
+
+# Format code inside `impl` blocks consistently
+format_strings = true
+
+# Indentation style: "Block" or "Visual"
+# "Block" means indent based on the current block structure (e.g., inside `{}`).
+# "Visual" aligns items vertically across lines.
+indent_style = "Block"
+
+# Control whether or not to insert trailing commas in arrays and structs
+trailing_comma = "Always"  # Options: "Never", "Always", "Horizontal"
+
+# Control whether to group items that are part of a larger expression or statement
+group_imports = "StdExternalCrate" 
+
+# Max width of a comment before it gets wrapped
+comment_width = 80
+
+# Control how `if let` and `match` arms are formatted
+match_block_width = 80
+
+# Control whether to add `use` statements in the same line
+use_small_heuristics = "Max"  # Possible values: "max", "always", "never"
+
+# Whether or not to force the `else` block to be on the same line
+else_on_same_line = false
+
+# Whether or not to use `unwrap()` on `Option` and `Result` values
+# This is typically a preference for safety vs convenience.
+force_multiline_blocks = true
+
+# Enable some experimental features (may change in future versions)
+edition = "2018"  # Set the Rust edition to use (2015 or 2018)
+
+# Reformat functions, methods, and closures
+reorder_imports = true  # Ensures imports are ordered

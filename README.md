@@ -5,10 +5,12 @@ or lowest values found by recursively matching and rematching pairs to
 assert the best matching pair. 
 
 This algorithm differs from the Hungarian Algorithm which seeks to formulate
-assignments based on the minimum (default) or maximum sum of the assignments. 
+assignments based on the minimum (default) or maximum sum of the assignments. The
+hungarian algorithm has the following properties which may not be ideal for certain
+applications.
 
 * The assignments formulated with the maximum sum does not always guarantee individual assignments with the highest possible outcome. 
-* Similarly, the assignments formulated with the minimum sum does not always guarantee individual assignments with the lowest possible outcome.
+* The assignments formulated with the minimum sum does not always guarantee individual assignments with the lowest possible outcome.
 
 # Application
 
@@ -61,6 +63,11 @@ within a set of options.
 
 For more information, see `/python/demo.ipynb`
 
+# Changelog
+
+* Feb 06, 2025 [v1.0]: First release - python implementation.
+* Mar 02, 2025 [v1.0.1]: Rust implementation, doc fixes, python file name changes.
+
 # Modules
 The algorithm will be implemented in three languages: Python, Rust, C.
 
@@ -97,7 +104,39 @@ print(f"{matches=}")
 ```
 
 ## Rust
-TBA.
+This implementation can be found under `\rust`. To use the crate, add the
+following to your `Cargo.toml`.
+
+```toml
+[dependencies]
+recursive_matching = "1.0.1"
+```
+
+Next import the crate.
+
+```rust
+use recursive_matching::recursive_match;
+```
+
+```rust
+use ndarray::{array, Array2};
+
+let mut matrix: Array2<f32> = array![
+    [0.0, 0.0, 0.0, 0.0, 0.0,],
+    [0.20689655, 0.07407407, 0.04761905, 0.0, 0.23076923],
+    [0.0, 0.0, 0.38461538, 0.0, 0.0],
+    [0.0, 0.0, 0.04347826, 0.5, 0.0],
+    [0.5, 0.0, 0.0, 0.0, 1.0]
+];
+
+let matches = recursive_match(&mut matrix, 1 as usize, true, false);
+
+println!("Matches: {:?}", matches);
+```
 
 ## C
 TBA.
+
+# License
+
+This project is licensed under the GPL v3.0 License.

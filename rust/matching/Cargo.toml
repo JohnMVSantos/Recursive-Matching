@@ -1,0 +1,17 @@
+[package]
+name = "recursive_matching"
+version = "1.0.1"
+edition = "2021"
+authors = ["John Santos johnmarisantos@protonmail.com"]
+description = "Formulating unique assignments recursively."
+license = "GPL-3.0-only"
+repository = "https://github.com/JohnMVSantos/Recursive-Matching/"
+homepage = "https://github.com/JohnMVSantos/Recursive-Matching/"
+readme = "../../README.md"
+keywords = ["matching", "recursive", "assignments", "rust"]
+categories = ["algorithms"]
+
+[dependencies]
+ndarray = "0.16.1"
+ndarray-stats = "0.6.0"
+recursive = "0.1.1"

@@ -14,3 +14,6 @@
     - CMake
 
 - Paper and analysis on the recursive algorithm. 
+
+v1.0.2 - C implementation
+v2.0.0 - Python class implementation and cleanups
