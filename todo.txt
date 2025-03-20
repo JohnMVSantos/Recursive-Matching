@@ -14,5 +14,3 @@
 
 v1.0.2 - C implementation
 v1.1.0 - Python class implementation and cleanups
-
-gcc -o program matrix.c recursive_match.c lib.c -Wall -Wextra -pedantic -std=c11

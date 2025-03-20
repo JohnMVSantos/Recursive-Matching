@@ -4,14 +4,25 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-// Structure to represent a matrix
+/**
+ * @brief Structure to represent a matrix.
+ * 
+ * @var Matrix::rows
+ * Number of rows in the matrix.
+ *
+ * @var Matrix::cols
+ * Number of columns in the matrix.
+ *
+ * @var Matrix::data
+ * Pointer to the matrix data.
+ */
 typedef struct {
-    int rows;
-    int cols;
-    float** data;
+    int rows;       /**< Number of rows in the matrix. */
+    int cols;       /**< Number of columns in the matrix. */
+    float** data;   /**< Pointer to the matrix data. */
 } Matrix;
 
-// Function prototypes
+/** Function Prototypes */
 Matrix* create_matrix(int rows, int cols, float input_data[rows][cols]);
 void free_matrix(Matrix* matrix);
 void print_matrix(Matrix* matrix);

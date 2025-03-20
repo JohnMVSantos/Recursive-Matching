@@ -1,8 +1,15 @@
 #include "matrix.h"
 
-// Function to create a matrix with the given data
+/**
+ * @brief Creates a matrix and initializes it with given data.
+ *
+ * @param rows Number of rows in the matrix.
+ * @param cols Number of columns in the matrix.
+ * @param data 2D array containing matrix data.
+ * @return Pointer to the created Matrix structure, or NULL on failure.
+ */
 Matrix* create_matrix(int rows, int cols, float data[rows][cols]) {
-    // Allocate memory for the Matrix structure
+    // Allocate memory for the Matrix structure.
     Matrix* matrix = (Matrix*)malloc(sizeof(Matrix));
     if (!matrix) {
         fprintf(stderr, "\t - [ERROR] Memory allocation failed for matrix.\n");
@@ -12,7 +19,7 @@ Matrix* create_matrix(int rows, int cols, float data[rows][cols]) {
     matrix->rows = rows;
     matrix->cols = cols;
 
-    // Allocate memory for row pointers
+    // Allocate memory for row pointers.
     matrix->data = (float**)malloc(rows * sizeof(float*));
     if (!matrix->data) {
         fprintf(stderr, "\t - [ERROR] Memory allocation failed for row pointers.\n");
@@ -20,12 +27,12 @@ Matrix* create_matrix(int rows, int cols, float data[rows][cols]) {
         return NULL;
     }
 
-    // Allocate memory for each row and copy data
+    // Allocate memory for each row and copy data.
     for (int i = 0; i < rows; i++) {
         matrix->data[i] = (float*)malloc(cols * sizeof(float));
         if (!matrix->data[i]) {
             fprintf(stderr, "\t - [ERROR] Memory allocation failed for row %d.\n", i);
-            // Free previously allocated memory
+            // Free previously allocated memory.
             for (int j = 0; j < i; j++) 
                 free(matrix->data[j]);
             free(matrix->data);
@@ -33,16 +40,19 @@ Matrix* create_matrix(int rows, int cols, float data[rows][cols]) {
             return NULL;
         }
 
-        // Copy data from input array
+        // Copy data from input array.
         for (int j = 0; j < cols; j++) 
             matrix->data[i][j] = data[i][j];
     }
         
-
     return matrix;
 }
 
-// Function to free the allocated memory for a matrix
+/**
+ * @brief Frees the allocated memory for a matrix.
+ *
+ * @param matrix Pointer to the matrix to be freed.
+ */
 void free_matrix(Matrix* matrix) {
     for (int i = 0; i < matrix->rows; i++)
         free(matrix->data[i]);
@@ -51,7 +61,11 @@ void free_matrix(Matrix* matrix) {
     free(matrix);
 }
 
-// Function to print a matrix
+/**
+ * @brief Prints the elements of a matrix.
+ *
+ * @param matrix Pointer to the matrix to be printed.
+ */
 void print_matrix(Matrix* matrix) {
     for (int i = 0; i < matrix->rows; i++) {
         for (int j = 0; j < matrix->cols; j++) {
@@ -61,6 +75,11 @@ void print_matrix(Matrix* matrix) {
     }
 }
 
+/**
+ * @brief Applies inverse scaling to the matrix using its maximum value.
+ *
+ * @param matrix Pointer to the matrix to be transformed.
+ */
 void inverse_scale(Matrix* matrix) {
     float max_value = max(matrix);
 
@@ -71,7 +90,12 @@ void inverse_scale(Matrix* matrix) {
     }
 }
 
-// Function to find the maximum value in a matrix
+/**
+ * @brief Finds the maximum value in a matrix.
+ *
+ * @param matrix Pointer to the matrix.
+ * @return The maximum value in the matrix.
+ */
 float max(Matrix* matrix) {
     float max_value = matrix->data[0][0];
     for (int i = 0; i < matrix->rows; i++) {
@@ -83,7 +107,12 @@ float max(Matrix* matrix) {
     return max_value;
 }
 
-// Function to find the minimum value in a matrix
+/**
+ * @brief Finds the minimum value in a matrix.
+ *
+ * @param matrix Pointer to the matrix.
+ * @return The minimum value in the matrix.
+ */
 float min(Matrix* matrix) {
     float min_value = matrix->data[0][0];
     for (int i = 0; i < matrix->rows; i++) {
@@ -95,16 +124,30 @@ float min(Matrix* matrix) {
     return min_value;
 }
 
+/**
+ * @brief Extracts a row from the matrix.
+ *
+ * @param matrix Pointer to the matrix.
+ * @param i Index of the row to extract.
+ * @return Dynamically allocated array containing the row.
+ */
 float* get_row(Matrix* matrix, int i) {
-    // Dynamically allocate memory for the row
+    // Dynamically allocate memory for the row.
     float* row = (float*)malloc(matrix->cols * sizeof(float));
     for (int j = 0; j < matrix->cols; j++)
         row[j] = matrix->data[i][j];
     return row;
 }
 
+/**
+ * @brief Extracts a column from the matrix.
+ *
+ * @param matrix Pointer to the matrix.
+ * @param i Index of the column to extract.
+ * @return Dynamically allocated array containing the column.
+ */
 float* get_column(Matrix* matrix, int i) {
-    // Dynamically allocate memory for the column
+    // Dynamically allocate memory for the column.
     float* column = (float*)malloc(matrix->rows * sizeof(float));
     for (int j = 0; j < matrix->rows; j++)
         column[j] = matrix->data[j][i];
