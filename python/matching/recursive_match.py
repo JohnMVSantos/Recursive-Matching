@@ -41,7 +41,7 @@ def recursive_match( # NOSONAR
         means there is no match for this particular row/column.
     """
     if axis not in [0, 1]:
-        print(f"\t - [WARNING]: Axis can only between 0 or 1. Got {axis}")
+        print(f"\t - [ERROR] Axis can only be 0 or 1. Got {axis}")
         return
     
     if minimum:
