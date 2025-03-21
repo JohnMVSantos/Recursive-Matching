@@ -67,6 +67,7 @@ For more information, see `/python/demo.ipynb`
 
 * Feb 06, 2025 [v1.0]: First release - python implementation.
 * Mar 02, 2025 [v1.0.1]: Rust implementation, doc fixes, python file name changes.
+* Mar 20, 2025 [v1.0.2]: C implementation, python error message changes. 
 
 # Modules
 The algorithm will be implemented in three languages: Python, Rust, C.
