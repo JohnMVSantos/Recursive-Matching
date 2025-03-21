@@ -175,9 +175,8 @@ To build the library the following command is used.
 
 ```shell
 cd c/matching
-gcc -o program matrix.c recursive_match.c lib.c main.c -Wall -Wextra -pedantic -std=c11
+make
 ```
-
 
 # License
 

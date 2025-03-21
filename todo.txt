@@ -1,14 +1,12 @@
 
 
 1) Python
+    - Class implementation and cleanups
     - Optimize implementation of the hungarian algorithm
     - Return all possible assignments for the hungarian algorithm
     - Test hungarian implementations and compare with scipy results.
     - The hungarian implementation can be converted to class representation.
     - Resolve NOSONAR
-2) C
-    - Complete implementation
-    - CMake
 
 - Paper and analysis on the recursive algorithm. 
 
