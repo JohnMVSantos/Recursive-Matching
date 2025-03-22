@@ -105,7 +105,7 @@ print(f"{matches=}")
 ```
 
 ## Rust
-This implementation can be found under `\rust`. To use the crate, add the
+This implementation can be found under `/rust`. To use the crate, add the
 following to your `Cargo.toml`.
 
 ```toml
@@ -136,7 +136,7 @@ println!("Matches: {:?}", matches);
 ```
 
 ## C
-This implementation can be found under `\c`. See the following usage of the
+This implementation can be found under `/c`. See the following usage of the
 library implemented under `main.c`
 
 Include the following libraries.
