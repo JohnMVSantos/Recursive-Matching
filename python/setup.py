@@ -1,6 +1,8 @@
-from setuptools import setup, find_packages
-from setuptools.command.install import install
+"""Module for building the package."""
+
 import subprocess
+from setuptools import setup, find_packages
+
 
 def get_version():
     """
@@ -23,7 +25,7 @@ def get_version():
 
 NAME = "recursive-matching"
 VERSION = get_version()
-DESCRIPTION =  "Formulating unique assignments recursively."
+DESCRIPTION = "Formulating unique assignments recursively."
 URL = "https://github.com/JohnMVSantos/Recursive-Matching"
 AUTHOR = "John Santos"
 AUTHOR_EMAIL = "johnmarisantos@protonmail.com"

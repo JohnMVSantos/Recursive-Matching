@@ -1,7 +1,9 @@
+"""Module for the placeholder of the hungarian algorithm."""
+
 import numpy as np
 
 
-def hungarian_match(matrix: np.ndarray, axis: int=1, minimum: bool=True) -> np.ndarray: # NOSONAR
+def hungarian_match(matrix: np.ndarray, axis: int = 1, minimum: bool = True) -> np.ndarray:  # NOSONAR
     """
     Hungarian algorithm implementation for optimal assignments.
 
@@ -21,7 +23,7 @@ def hungarian_match(matrix: np.ndarray, axis: int=1, minimum: bool=True) -> np.n
     minimum : bool
         Match based to yeild the smallest sum (default). If set to False,
         match based on the highest sum.
-    
+
     Returns
     -------
     np.ndarray
@@ -35,7 +37,7 @@ def hungarian_match(matrix: np.ndarray, axis: int=1, minimum: bool=True) -> np.n
     if axis not in [0, 1]:
         print(f"\t - [WARNING]: Axis can only between 0 or 1. Got {axis}")
         return
-    
+
     def pad_matrix(matrix: np.ndarray) -> np.ndarray:
         """
         Pad a matrix with zeros to ensure a square matrix.
@@ -54,7 +56,7 @@ def hungarian_match(matrix: np.ndarray, axis: int=1, minimum: bool=True) -> np.n
         rows, cols = matrix.shape
         if rows == cols:
             return matrix
-        
+
         size = max(rows, cols)
         padded_matrix = np.zeros((size, size), dtype=np.float32)
         padded_matrix[:rows, :cols] = matrix
@@ -89,7 +91,7 @@ def hungarian_match(matrix: np.ndarray, axis: int=1, minimum: bool=True) -> np.n
         # The index of the zeros forming a line.
         # Group the indices into separate lists for each duplicated value
         return [np.nonzero(indices == val)[0].tolist() for val in common if val >= 0]
-    
+
     def all_lines(zeros: np.ndarray) -> list:
         """
         Collect all the lines in the current matrix state.
@@ -110,7 +112,7 @@ def hungarian_match(matrix: np.ndarray, axis: int=1, minimum: bool=True) -> np.n
             one list will only contain one zero.
         """
         total_lines = []
-    
+
         # Find the index in the zeros forming a row line.
         row_lines = lines(indices=zeros[:, 0])
 
@@ -119,7 +121,7 @@ def hungarian_match(matrix: np.ndarray, axis: int=1, minimum: bool=True) -> np.n
             total_lines.append(zeros[line])
 
         column_zeros = zeros.copy()
-        
+
         # These indices already formed a line.
         if len(row_lines):
             discard_indices = np.concatenate(row_lines).tolist()
@@ -139,13 +141,13 @@ def hungarian_match(matrix: np.ndarray, axis: int=1, minimum: bool=True) -> np.n
 
         # Each element is the index of one zero forming one line.
         remaining_lines = np.nonzero(column_zeros[:, 0] >= 0)[0]
-        
+
         # Add a line for each remaining zero.
         for line in remaining_lines:
             total_lines.append(zeros[line])
 
         return total_lines
-    
+
     def add_lines(total_lines: list, matrix: np.ndarray) -> np.ndarray:
         """
         Implementation of step 5 in the process which seeks to identify 
@@ -209,19 +211,22 @@ def hungarian_match(matrix: np.ndarray, axis: int=1, minimum: bool=True) -> np.n
 
         # Identify smallest uncovered value.
         uncovered_positions = np.reshape(uncovered_positions, (-1, 2))
-        uncovered_values = matrix[uncovered_positions[:, 0], uncovered_positions[:, 1]]
+        uncovered_values = matrix[uncovered_positions[:,
+                                                      0], uncovered_positions[:, 1]]
         uncovered_minimum = np.min(uncovered_values)
 
         # Subtract uncovered values by the smallest uncovered value.
-        matrix[uncovered_positions[:, 0], uncovered_positions[:, 1]] -= uncovered_minimum
+        matrix[uncovered_positions[:, 0],
+               uncovered_positions[:, 1]] -= uncovered_minimum
 
         # Add values covered twice with the smallest uncovered value.
         indices = np.reshape(indices, (-1, 2))
         covered_positions = indices[covered_counts > 1]
-        matrix[covered_positions[:, 0], covered_positions[:, 1]] += uncovered_minimum
-        
+        matrix[covered_positions[:, 0],
+               covered_positions[:, 1]] += uncovered_minimum
+
         return matrix
-    
+
     def zero(matrix: np.ndarray) -> np.ndarray:
         """
         Find the positions of the zeros in the matrix.
@@ -239,7 +244,7 @@ def hungarian_match(matrix: np.ndarray, axis: int=1, minimum: bool=True) -> np.n
             the zeros in the matrix.
         """
         zeros = np.nonzero(matrix == 0)
-        zeros = np.hstack((zeros[0][:, np.newaxis], zeros[1][:, np.newaxis]), 
+        zeros = np.hstack((zeros[0][:, np.newaxis], zeros[1][:, np.newaxis]),
                           dtype=np.int32)
         return zeros
 
@@ -279,10 +284,10 @@ def hungarian_match(matrix: np.ndarray, axis: int=1, minimum: bool=True) -> np.n
         # Step 2: Subtract column minima.
         column_minimums = np.min(matrix_minus_row, axis=0)
         matrix_minus_column = matrix_minus_row - column_minimums[np.newaxis, :]
-        
+
         # Step 3. Cover zeros with lines.
         zeros = zero(matrix=matrix_minus_column)
-        total_lines = all_lines(zeros)    
+        total_lines = all_lines(zeros)
 
         # Step 4. Check for optimal solution. Proceed to step 5 if not.
         if len(total_lines) < matrix.shape[0]:
@@ -292,7 +297,7 @@ def hungarian_match(matrix: np.ndarray, axis: int=1, minimum: bool=True) -> np.n
             # from the values that are not covered by any line.
 
             matrix_minus_column = add_lines(
-                total_lines=total_lines, 
+                total_lines=total_lines,
                 matrix=matrix_minus_column
             )
 
@@ -303,26 +308,26 @@ def hungarian_match(matrix: np.ndarray, axis: int=1, minimum: bool=True) -> np.n
                 process(matrix=matrix_minus_column)
 
         return total_lines
-    
-    # The hungarian algorithm requires a square matrix. 
+
+    # The hungarian algorithm requires a square matrix.
     matrix = pad_matrix(matrix=matrix)
-    
+
     # Find the maximum assignments.
     if not minimum:
-        # Convert to minimization by subtracting 
+        # Convert to minimization by subtracting
         # each element from the max in each row
-        row_max = matrix.max(axis = 1).reshape(-1, 1) # Get row-wise max.
+        row_max = matrix.max(axis=1).reshape(-1, 1)  # Get row-wise max.
         matrix = row_max - matrix  # Convert to cost matrix for minimization.
 
     optimal_lines = process(matrix)
 
     # Step 6. Formulate matches depending on the axis provided.
-    matches = np.ones(matrix.shape[axis], dtype=np.int32) * -1 
-    
+    matches = np.ones(matrix.shape[axis], dtype=np.int32) * -1
+
     #  A line with only one zero represents a mandatory assignment.
-    single_zeros = [] # Lines formed by a single zero.
-    multi_zeros = [] # Lines formed by multiple zeros.
-    
+    single_zeros = []  # Lines formed by a single zero.
+    multi_zeros = []  # Lines formed by multiple zeros.
+
     # This needs to be optimized: TODO.
     for line in optimal_lines:
         # Indicates multiple zeros are covered.
@@ -336,7 +341,7 @@ def hungarian_match(matrix: np.ndarray, axis: int=1, minimum: bool=True) -> np.n
         match_value = z[int(not axis)]
 
         if match_value in matches:
-                continue
+            continue
 
         # Current position does not currently have a match.
         if matches[match_index] < 0:
@@ -356,25 +361,25 @@ def hungarian_match(matrix: np.ndarray, axis: int=1, minimum: bool=True) -> np.n
 
     return matches
 
-if __name__ == '__main__':
-    matrix = np.array([
-        [30,40,50,60],
-        [70,30,40,70],
-        [60,50,60,30],
-        [20,80,50,70]
-    ], dtype=np.float32)
-    matches = hungarian_match(matrix=matrix)
-    print(f"{matches=}")
 
+if __name__ == '__main__':
+    mat = np.array([
+        [30, 40, 50, 60],
+        [70, 30, 40, 70],
+        [60, 50, 60, 30],
+        [20, 80, 50, 70]
+    ], dtype=np.float32)
+    match = hungarian_match(matrix=mat)
+    print(f"Matches: {match}")
 
     # Compare the matches with the matrix from the recursive matching.
-    matrix = np.array([
-        [0.,         0.,         0.,         0.,         0.        ],
+    mat = np.array([
+        [0.,         0.,         0.,         0.,         0.],
         [0.20689655, 0.07407407, 0.04761905, 0.,         0.23076923],
-        [0.,         0.,         0.38461538, 0.,         0.,        ],
-        [0.,         0.,         0.04347826, 0.5,        0.,        ],
-        [0.5,        0.,         0.,         0.,         1.,        ]
+        [0.,         0.,         0.38461538, 0.,         0.,],
+        [0.,         0.,         0.04347826, 0.5,        0.,],
+        [0.5,        0.,         0.,         0.,         1.,]
     ], dtype=np.float32)
 
-    matches = hungarian_match(matrix=matrix, minimum=False)
-    print(f"{matches=}")
+    match = hungarian_match(matrix=mat, minimum=False)
+    print(f"Matches: {match}")

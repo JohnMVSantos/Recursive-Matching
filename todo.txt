@@ -9,5 +9,3 @@
     - Resolve NOSONAR
 
 - Paper and analysis on the recursive algorithm. 
-
-v1.1.0 - Python class implementation and cleanups
